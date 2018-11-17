@@ -1,4 +1,21 @@
 .topbar {
   grid-area: topbar;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 60px;
   height: 70px;
+  background: var(--white);
+}
+
+.add-user {
+  color: var(--darkgrey);
+}
+
+.add-user__icon {
+  margin-right: 14px;
+}
+
+.add-user__label {
+  font-size: 19px;
 }
