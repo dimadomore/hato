@@ -1,0 +1,15 @@
+.logo {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo__text {
+  font-family: 'PhosphateSolid';
+  font-size: 56px;
+  color: #304459;
+  position: relative;
+  top: 25%;
+}
