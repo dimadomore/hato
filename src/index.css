@@ -2,10 +2,11 @@
 
 :root {
   /* Colors */
-  --yellow: #ffc600;
-  --black: #272727;
-  --silver: #c0c0c0;
-  --blue: #6593f5;
+  --black: #2D3032;
+  --white: #FFFFFF;
+  --grey: #F6F6F7;
+  --darkgrey: #E8ECF3;
+  --blue: #0086F8;
 }
 
 html {
@@ -19,6 +20,7 @@ html {
 *:before,
 *:after {
   box-sizing: inherit;
+  border: 1px solid pink;
 }
 
 body {

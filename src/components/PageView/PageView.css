@@ -1,9 +1,9 @@
-.App {
-  /* display: grid;
+.page-view {
+  display: grid;
   grid-template-columns: 20% auto;
   grid-template-rows: 70px auto;
   grid-template-areas: 
     "sidebar topbar"
     "sidebar content";
-  background-color: var(--grey); */
+  background-color: var(--grey);
 }
