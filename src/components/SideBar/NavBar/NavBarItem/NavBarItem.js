@@ -2,12 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './NavBarItem.scss';
 
-import { ReactComponent as DasboardIcon } from '../icons/Dashboard.svg';
-import { ReactComponent as ListIcon } from '../icons/List.svg';
+import { ReactComponent as DasboardIcon } from '../../../../icons/dashboard.svg';
+import { ReactComponent as ListIcon } from '../../../../icons/list.svg';
 
 
 function NavBarItem({ title, isActive, isExpanded}) {
-  
   return (
     <div className={`navbar-item ${isActive ? 'navbar-item--active' : ''} ${isExpanded ? 'navbar-item--expanded' : ''}`}>
       <div className="navbar-item__icon">

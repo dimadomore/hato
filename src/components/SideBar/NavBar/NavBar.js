@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import NavBarItem from './NavBarItem/NavBarItem';
 
-import './NavBar.css';
+import './NavBar.scss';
 
 
 class NavBar extends Component {
@@ -27,7 +27,11 @@ class NavBar extends Component {
     return (
       <nav className={`navbar ${isExpanded ? 'navbar--expanded' : ''}`}>
         {items.map(item => (
-          <NavBarItem {...item} isActive={item.title === 'Dashboard' ? 1 : 0} isExpanded={isExpanded} />
+          <NavBarItem 
+            isActive={item.title === 'List' ? 1 : 0} 
+            isExpanded={isExpanded}
+            {...item}
+          />
         ))
         }
       </nav>

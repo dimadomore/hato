@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './PageView.css';
+import './PageView.scss';
 
 import SideBar from '../SideBar/SideBar';
 import TopBar from '../TopBar/TopBar';

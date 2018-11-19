@@ -1,0 +1,12 @@
+<svg width="22px" height="22px" viewBox="0 0 22 22">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+        <g id="add">
+            <g id="Ellipse_2">
+                <circle id="Oval" fill="#FFFFFF" fill-rule="nonzero" cx="11" cy="11" r="11"></circle>
+                <circle id="Oval" stroke="var(--darkgrey)" cx="11" cy="11" r="10.5"></circle>
+            </g>
+            <path d="M11,5.5 L11,16.5" id="Line_1" stroke="var(--darkgrey)"></path>
+            <path d="M10,6 L10,17" id="Line_2" stroke="var(--darkgrey)" transform="translate(10.500000, 11.500000) rotate(90.000000) translate(-10.500000, -11.500000) "></path>
+        </g>
+    </g>
+</svg>

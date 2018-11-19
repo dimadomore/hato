@@ -63,13 +63,13 @@ $blue_rect_width: 9px;
     height: 100%;
 
     path, rect {
-      fill: #BABABA;
-      stroke: #BABABA;
+      fill: var(--darkgrey);
+      stroke: var(--darkgrey);
     }
   }
 }
 
 .navbar-item__title {
-  color: #BABABA;
+  color: var(--darkgrey);
   margin-left: 15px;
 }

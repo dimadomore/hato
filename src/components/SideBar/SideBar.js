@@ -3,7 +3,10 @@ import React, { Component } from 'react';
 import Logo from '../Logo/Logo';
 import NavBar from './NavBar/NavBar';
 
+import { ReactComponent as ExpandIcon } from '../../icons/expand.svg';
+
 import './SideBar.scss';
+
 
 class SideBar extends Component {
   state = {
@@ -27,7 +30,7 @@ class SideBar extends Component {
           className="sidebar__toggle"
           onClick={this.handleToggle}
         >
-          {'<'}
+          <ExpandIcon />
         </div>
       </aside>
     );
