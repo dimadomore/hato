@@ -3,6 +3,7 @@ $blue_rect_width: 9px;
 .sidebar {
   grid-area: sidebar;
   height: 100vh;
+  position: relative;
   background: var(--white);
   border-right: 1px solid #E8E8EA;
   min-width: 85px;
@@ -19,10 +20,23 @@ $blue_rect_width: 9px;
       padding-left: calc(15.5px + #{$blue_rect_width});
     }
   }
+
+  .sidebar__toggle {
+    justify-content: flex-start;
+    padding-left: 31px;
+    svg {
+      transform: rotate(180deg)
+    }
+  }
 }
 
 .sidebar__toggle {
-  font-size: 50px;
+  position: absolute;
+  bottom: 20px;
+  width: 22px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
 }
 
 .sidebar__logo {
