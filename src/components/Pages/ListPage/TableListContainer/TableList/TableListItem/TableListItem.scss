@@ -11,4 +11,7 @@
 .control-delete {
   text-align: right;
   color: #ED8D0B;
+  span {
+    cursor: pointer;
+  }
 }

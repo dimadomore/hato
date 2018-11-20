@@ -10,7 +10,7 @@ import './SideBar.scss';
 
 class SideBar extends Component {
   state = {
-    isExpanded: true,
+    isExpanded: false,
   }
 
   handleToggle = () => {

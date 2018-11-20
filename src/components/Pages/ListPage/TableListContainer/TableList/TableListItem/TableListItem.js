@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './TableListItem.scss';
 
 
-function TableListItem({ id, name, email, phoneNumber, dateBirth, languages}) {
+function TableListItem({ id, name, email, phoneNumber, dateBirth, languages, deleteItem }) {
   return (
     <tr className="table-list-item">
       <td>
@@ -24,8 +24,11 @@ function TableListItem({ id, name, email, phoneNumber, dateBirth, languages}) {
       <td>
         {languages.map((language, i) => i === (languages.length - 1) ? language : `${language}, `)}
       </td>
-      <td className="control-delete">
-        Delete
+      <td 
+        className="control-delete"
+        onClick={() => deleteItem(id)}
+      >
+        <span>Delete</span>
       </td>
     </tr>
   );
@@ -38,6 +41,7 @@ TableListItem.propTypes = {
   phoneNumber: PropTypes.string,
   dateBirth: PropTypes.string,
   languages: PropTypes.arrayOf(PropTypes.string),
+  deleteItem: PropTypes.func,
 }
 
 TableListItem.defaultProps = {
@@ -47,6 +51,7 @@ TableListItem.defaultProps = {
   phoneNumber: '',
   dateBirth: '',
   languages: [],
+  deleteItem: () => {},
 }
 
 export default TableListItem;

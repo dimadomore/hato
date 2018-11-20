@@ -10,7 +10,7 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <Router>
-    <Router basename="/">
+    <Router>
       <App>
         <Switch>
           <Route path="/home" component={DashboardPage} />

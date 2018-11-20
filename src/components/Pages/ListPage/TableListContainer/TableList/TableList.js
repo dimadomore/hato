@@ -8,18 +8,22 @@ import TableHeader from './TableHeader/TableHeader';
 class TableList extends Component {
 
   render() {
-    const { items } = this.props;
+    const { items, deleteItem } = this.props;
 
     return (
       <div className="table-list">
         <table>
-          <TableHeader />
-          {items.map((item, i) => (
-            <TableListItem 
-              {...item}
-            />
-          ))
-          }
+          <tbody>
+            <TableHeader />
+            {items.map(item => (
+              <TableListItem 
+                key={item.id}
+                deleteItem={deleteItem}
+                {...item}
+              />
+            ))
+            }
+          </tbody>
         </table>
       </div>
     );
@@ -37,11 +41,13 @@ TableList.propTypes = {
       dateBirth: PropTypes.string,
       languages: PropTypes.arrayOf(PropTypes.string),
     })
-  )
+  ),
+  deleteItem: PropTypes.func,
 }
 
 TableList.defaultProps = {
   items: [],
+  deleteItem: () => {},
 }
 
 
