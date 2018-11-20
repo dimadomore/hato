@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import './PageView.scss';
 
 import SideBar from '../SideBar/SideBar';
@@ -11,7 +12,9 @@ class PageView extends Component {
       <div className="page-view">
         <TopBar />
         <SideBar />
-        <MainContent />
+        <MainContent>
+          {this.props.children}
+        </MainContent>
       </div>
     );
   }

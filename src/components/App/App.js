@@ -8,7 +8,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <PageView />
+        <PageView>
+          {this.props.children}
+        </PageView>
       </div>
     );
   }

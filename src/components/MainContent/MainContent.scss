@@ -1,4 +1,10 @@
 .main-content {
   grid-area: content;
-  background-color: #E8ECF3;
+  background-color: var(--grey);
+}
+
+.page {
+  display: grid;
+  height: 100%;
+  padding: 35px;
 }

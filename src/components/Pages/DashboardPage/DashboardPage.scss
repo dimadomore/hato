@@ -1,0 +1,21 @@
+.dashboard-page {
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: min-content;
+  background-color: #E8ECF3;
+
+  @media only screen and (max-width: 1200px) {
+      grid-template-columns: 1fr 1fr;    
+  }
+
+  @media only screen and (max-width: 800px) {
+      grid-template-columns: 1fr;    
+  }
+}
+
+.welcome-text {
+  h2 {
+    font-family: 'PhosphateSolid';
+    font-size: 45px;
+    color: var(--black);
+  }
+}
