@@ -7,11 +7,11 @@ class TopBar extends Component {
   render() {
     return (
       <div className="topbar">
-        <div className="add-user">
-          <div className="add-user__icon">
+        <div className="topbar_add-user">
+          <div className="topbar_add-user__icon">
             <AddIcon />
           </div>
-          <span className="add-user__label">Add user</span>
+          <span className="topbar_add-userr__label">Add user</span>
         </div>
       </div>
     );

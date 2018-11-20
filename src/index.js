@@ -5,18 +5,27 @@ import './index.scss';
 import App from './components/App/App';
 import DashboardPage from './components/Pages/DashboardPage/DashboardPage';
 import ListPage from './components/Pages/ListPage/ListPage';
+import AddUser from './components/AddUser/AddUser';
 
 import * as serviceWorker from './serviceWorker';
+
+// if (items.length === 0) {
+//   return <Redirect to='/add-user' />
+// }
 
 ReactDOM.render(
   <Router>
     <Router>
-      <App>
-        <Switch>
-          <Route path="/home" component={DashboardPage} />
-          <Route path="/list" component={ListPage} />
-        </Switch>
-      </App>
+      <Switch>
+        <Route path="/add-user" component={AddUser} />
+        <App>
+          <Switch>
+            <Route exact path="/" component={DashboardPage} />
+            <Route path="/home" component={DashboardPage} />
+            <Route path="/list" component={ListPage} />
+          </Switch>
+        </App>
+      </Switch>
     </Router>
   </Router>,
   document.getElementById('root')

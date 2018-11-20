@@ -1,32 +1,37 @@
 import React, { Component } from 'react';
-import './TableListContainer.scss';
+import { Redirect } from 'react-router-dom';
 
 import TableList from './TableList/TableList';
 import SearchBar from './SearchBar/SearchBar';
+
+import localStorage from '../../../../localStorageHandler';
+
+import './TableListContainer.scss';
 
 
 class TableListContainer extends Component {
   state = {
     filter: '',
     sortColumn: 0,
-    items: [
-      {
-        id: 1,
-        name: 'George Teaman',
-        email: 'george@oneest.com',
-        phoneNumber: '069696969',
-        dateBirth: '19.12.1990',
-        languages: ['EN', 'RO'],
-      },
-      {
-        id: 2,
-        name: 'Andrei Tabirta',
-        email: 'adrian@oneest.com',
-        phoneNumber: '069696969',
-        dateBirth: '19.12.1990',
-        languages: ['EN', 'RO'],
-      },
-    ],
+    items: localStorage.get('users'),
+    // items: [
+    //   {
+    //     id: 1,
+    //     name: 'George Teaman',
+    //     email: 'george@oneest.com',
+    //     phoneNumber: '069696969',
+    //     dateBirth: '19.12.1990',
+    //     languages: ['EN', 'RO'],
+    //   },
+    //   {
+    //     id: 2,
+    //     name: 'Andrei Tabirta',
+    //     email: 'adrian@oneest.com',
+    //     phoneNumber: '069696969',
+    //     dateBirth: '19.12.1990',
+    //     languages: ['EN', 'RO'],
+    //   },
+    // ],
   }
 
   handleFilterChange = (e) => {
@@ -34,7 +39,11 @@ class TableListContainer extends Component {
   }
 
   deleteItem = (id) => {
-    this.setState(prevState => ({ items: prevState.items.filter(item => item.id !== id) }));
+    this.setState(prevState => {
+      const newItems = prevState.items.filter(item => item.id !== id);
+      localStorage.set('users', newItems);
+      return { items: newItems };
+    });
   }
 
   getFilteredItems() {
@@ -62,7 +71,7 @@ class TableListContainer extends Component {
   }
 
   render() {
-    const { filter } = this.state;
+    const { items, filter } = this.state;
     const filteredItems = this.getFilteredItems();
 
     return (
