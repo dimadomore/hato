@@ -9,13 +9,14 @@
 }
 
 .sidebar--expanded {
-  min-width: 20vw;
+  // min-width: 20vw;
+  width: 230px;
   max-width: 230px;
   
   .sidebar__logo {
     .logo {
       justify-content: flex-start;
-      padding-left: 24.5px;
+      padding-left: 28px;
     }
   }
 
