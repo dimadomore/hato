@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
+import formatDate from 'date-fns/format';
+import parse from 'date-fns/parse';
 
 import Block from '../Block/Block';
 import Logo from '../Logo/Logo';
@@ -23,27 +24,30 @@ class AddUser extends Component {
     step: 0,
   }
 
-  handleInputChage = (name, value) => {
-    if (name === 'languages') {
-      this.setState(prevState => {
-        let newArray = [];
-        if (prevState.user[name].some(item => item === value)) {
-          newArray = prevState.user[name].filter(item => item !== value);
-        } else {
-          newArray = [...prevState.user[name], value];
-        }
+  handleInputChange = (name, value) => {
+    const { user } = this.state;
 
-        return {
-          ...prevState,
-          user: {
-            ...prevState.user,
-            [name]: newArray,
-          }
-        }
-      });
-      return null;
+    if (name === 'dateBirth') {
+      this.setUserValue(name, formatDate(value, 'dd.MM.yyyy'));
+      return;
     }
 
+    if (name === 'languages') {
+      let newArray = [];
+      if (user[name].some(item => item === value)) {
+        newArray = user[name].filter(item => item !== value);
+      } else {
+        newArray = [...user[name], value];
+      }
+      this.setUserValue(name, newArray);
+
+      return;
+    }
+
+    this.setUserValue(name, value);
+  }
+
+  setUserValue = (name, value) => {
     this.setState(prevState => ({
       ...prevState,
       user: {
@@ -82,7 +86,7 @@ class AddUser extends Component {
             placeholder={placeholder}
             name={name}
             value={user[name]}
-            onChange={(e) => this.handleInputChage(name, e.target.value)}
+            onChange={(e) => this.handleInputChange(name, e.target.value)}
           />
         );
       case 'checkbox':
@@ -91,7 +95,7 @@ class AddUser extends Component {
             {options.map(option => (
               <span
                 className={`form_${name}__option ${user[name].some(item => item === option) && `form_${name}__option--selected`}`}
-                onClick={() => this.handleInputChage(name, option)}
+                onClick={() => this.handleInputChange(name, option)}
               >
                 {option}
               </span>
@@ -101,8 +105,9 @@ class AddUser extends Component {
       case 'date':
         return (
           <DatePicker
-            selected={user[name] || new Date()}
-            onChange={this.handleInputChange}
+            selected={user[name] ? parse(user[name], 'dd.MM.yyyy', new Date()) : new Date()}
+            onChange={(date) => this.handleInputChange(name, date)}
+            dateFormat="dd.MM.yyyy"
           />
         )
 
