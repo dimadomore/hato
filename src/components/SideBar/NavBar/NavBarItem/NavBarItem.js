@@ -1,14 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './NavBarItem.scss';
+import { NavLink } from 'react-router-dom';
 
 import { ReactComponent as DasboardIcon } from '../../../../icons/dashboard.svg';
 import { ReactComponent as ListIcon } from '../../../../icons/list.svg';
 
+import './NavBarItem.scss';
 
-function NavBarItem({ title, isActive, isExpanded}) {
+
+
+function NavBarItem({ title, route, isExpanded}) {
   return (
-    <div className={`navbar-item ${isActive ? 'navbar-item--active' : ''} ${isExpanded ? 'navbar-item--expanded' : ''}`}>
+    <NavLink
+      to={route}
+      className={`navbar-item ${isExpanded ? 'navbar-item--expanded' : ''}`}
+      activeClassName="navbar-item--active"
+    >
       <div className="navbar-item__icon">
         {NavBarItem.icons[title.toLowerCase()]}
       </div>
@@ -18,7 +25,7 @@ function NavBarItem({ title, isActive, isExpanded}) {
         </div>
       )
       }
-    </div>
+    </NavLink>
   );
 }
 

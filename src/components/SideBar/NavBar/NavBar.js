@@ -27,8 +27,7 @@ class NavBar extends Component {
     return (
       <nav className={`navbar ${isExpanded ? 'navbar--expanded' : ''}`}>
         {items.map(item => (
-          <NavBarItem 
-            isActive={item.title === 'List' ? 1 : 0} 
+          <NavBarItem
             isExpanded={isExpanded}
             {...item}
           />

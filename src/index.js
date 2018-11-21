@@ -28,7 +28,7 @@ ReactDOM.render(
         <App>
           <Switch>
             <PrivateRoute exact path="/" component={DashboardPage} />
-            <PrivateRoute path="/home" component={DashboardPage} />
+            <PrivateRoute path="/dashboard" component={DashboardPage} />
             <PrivateRoute path="/list" component={ListPage} />
           </Switch>
         </App>
