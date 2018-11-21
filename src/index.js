@@ -1,17 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import './index.scss';
 import App from './components/App/App';
 import DashboardPage from './components/Pages/DashboardPage/DashboardPage';
 import ListPage from './components/Pages/ListPage/ListPage';
 import AddUser from './components/AddUser/AddUser';
 
+import localStorage from './localStorageHandler';
+
 import * as serviceWorker from './serviceWorker';
 
-// if (items.length === 0) {
-//   return <Redirect to='/add-user' />
-// }
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={(props) => (
+    localStorage.get('users') && localStorage.get('users').length
+      ? <Component {...props} />
+      : <Redirect to='/add-user' />
+  )} />
+)
 
 ReactDOM.render(
   <Router>
@@ -20,9 +27,9 @@ ReactDOM.render(
         <Route path="/add-user" component={AddUser} />
         <App>
           <Switch>
-            <Route exact path="/" component={DashboardPage} />
-            <Route path="/home" component={DashboardPage} />
-            <Route path="/list" component={ListPage} />
+            <PrivateRoute exact path="/" component={DashboardPage} />
+            <PrivateRoute path="/home" component={DashboardPage} />
+            <PrivateRoute path="/list" component={ListPage} />
           </Switch>
         </App>
       </Switch>

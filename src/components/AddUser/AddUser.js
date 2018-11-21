@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import DatePicker from 'react-datepicker';
 
 import Block from '../Block/Block';
+import Logo from '../Logo/Logo';
 import localStorage from '../../localStorageHandler';
 
 import './AddUser.scss';
+import "react-datepicker/dist/react-datepicker.css";
 
 
 class AddUser extends Component {
@@ -17,44 +21,36 @@ class AddUser extends Component {
       languages: [],
     },
     step: 0,
-    stepsInfo: [
-      {
-        text: 'What is your name?',
-        type: 'text',
-        name: 'name',
-        placeholder: 'Name',
-      },
-      {
-        text: 'Spoken Languages',
-        type: 'radio',
-        name: 'languages',
-        options: ['RO', 'RU', 'EN', 'FR'],
-      },
-      {
-        text: 'What is your email?',
-        type: 'email',
-        name: 'email',  
-        placeholder: 'Email',
-      },
-      {
-        text: 'What is your phone number?',
-        type: 'text',
-        name: 'phoneNumber',
-        placeholder: 'Phone Number'
-      },
-      {
-        text: 'What is your date of birth?',
-        type: 'date',
-        name: 'name',
-        placeholder: 'Select a date'
-      },
-    ]
   }
 
-  handleInputChage = (e) => {
-    const { name, value } = e.target;
+  handleInputChage = (name, value) => {
+    if (name === 'languages') {
+      this.setState(prevState => {
+        let newArray = [];
+        if (prevState.user[name].some(item => item === value)) {
+          newArray = prevState.user[name].filter(item => item !== value);
+        } else {
+          newArray = [...prevState.user[name], value];
+        }
 
-    console.log('=> ', name, value);
+        return {
+          ...prevState,
+          user: {
+            ...prevState.user,
+            [name]: newArray,
+          }
+        }
+      });
+      return null;
+    }
+
+    this.setState(prevState => ({
+      ...prevState,
+      user: {
+        ...prevState.user,
+        [name]: value,
+      }
+    }));
   }
 
   setNextStep = () => {
@@ -69,48 +65,110 @@ class AddUser extends Component {
     } else {
       localStorage.set('users', [user]);
     }
-    this.props.history.go('/home');
+    this.props.history.push('/');
   }
 
   renderInput = ({ type, options, placeholder, name }) => {
     const { user } = this.state;
-    console.log('=> ', user[name]);
-    const inputs = {
-      text() {
-        return <input type="text" value={user[name]} onChange={this.handleInputChage} />
-      },
-      date() {
-        return <input type="date" value={user[name]} />
-      },
-      radio() {
-        return (
-          null
-        );
-      },
-    }
 
-    return inputs[type] ? inputs[type]() : null;
+    switch (type) {
+      case 'text':
+      case 'email':
+      case 'number':
+        return (
+          <input
+            className={`form form_${name}`}
+            type={type}
+            placeholder={placeholder}
+            name={name}
+            value={user[name]}
+            onChange={(e) => this.handleInputChage(name, e.target.value)}
+          />
+        );
+      case 'checkbox':
+        return (
+          <div className={`form_${name}`}>
+            {options.map(option => (
+              <span
+                className={`form_${name}__option ${user[name].some(item => item === option) && `form_${name}__option--selected`}`}
+                onClick={() => this.handleInputChage(name, option)}
+              >
+                {option}
+              </span>
+            ))}
+          </div>
+        );
+      case 'date':
+        return (
+          <DatePicker
+            selected={user[name] || new Date()}
+            onChange={this.handleInputChange}
+          />
+        )
+
+      default: 
+        return null;
+    }
   }
-  
 
   render() {
-    const { stepsInfo, step } = this.state;
-    const lastStep = stepsInfo.length - 1;
-    const stepInfo = stepsInfo[step];
+    const { step } = this.state;
+    const lastStep = AddUser.stepsInfo.length - 1;
+    const stepInfo = AddUser.stepsInfo[step];
 
     return (
       <div className="add-user">
-        <div>HATO</div>
+        <div className="add-user__logo">
+          <Logo type="long" />
+        </div>
         <Block className="add-user__modal">
-          <p>{stepInfo.text}</p>
-          {this.renderInput(stepInfo)}
-          <button 
+          <span className="add-user_modal__text">{stepInfo.text}</span>
+          <div className="add-user_modal__form">
+            {this.renderInput(stepInfo)}
+          </div>
+          <button
+            className="add-user_modal__submit"
             onClick={step === lastStep ? this.createUser : this.setNextStep}
-          >NEXT</button>
+          >
+            Next
+          </button>
         </Block>
       </div>
     );
   }
 }
+
+AddUser.stepsInfo = [
+  {
+    text: 'What is your name?',
+    type: 'text',
+    name: 'name',
+    placeholder: 'Name',
+  },
+  {
+    text: 'Spoken Languages',
+    type: 'checkbox',
+    name: 'languages',
+    options: ['RO', 'RU', 'EN', 'FR'],
+  },
+  {
+    text: 'What is your email?',
+    type: 'email',
+    name: 'email',  
+    placeholder: 'Email',
+  },
+  {
+    text: 'What is your phone number?',
+    type: 'number',
+    name: 'phoneNumber',
+    placeholder: 'Phone Number'
+  },
+  {
+    text: 'What is your date of birth?',
+    type: 'date',
+    name: 'dateBirth',
+    placeholder: 'Select a date'
+  },
+];
 
 export default withRouter(AddUser);
