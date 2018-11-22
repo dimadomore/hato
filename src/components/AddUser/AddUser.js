@@ -116,7 +116,7 @@ class AddUser extends Component {
     }
 
     if (name === 'email') {
-      const pattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       if (!value || !pattern.test(value)) {
         return this.setError('Invalid email adress');
       }
@@ -167,6 +167,7 @@ class AddUser extends Component {
           <div className={`form_${name}`}>
             {options.map(option => (
               <span
+                key={option}
                 className={`form_${name}__option ${user[name].some(item => item === option) && `form_${name}__option--selected`}`}
                 onClick={() => this.handleInputChange(name, option)}
               >
@@ -260,10 +261,10 @@ AddUser.stepsInfo = [
 ];
 
 AddUser.icons = {
-  name: <i class="fas fa-user"></i>,
-  phoneNumber: <i class="fa fa-phone"></i>,
-  dateBirth: <i class="fas fa-calendar-alt"></i>,
-  email: <i class="fas fa-envelope"></i>,
+  name: <i className="fas fa-user"></i>,
+  phoneNumber: <i className="fa fa-phone"></i>,
+  dateBirth: <i className="fas fa-calendar-alt"></i>,
+  email: <i className="fas fa-envelope"></i>,
 }
 
 export default withRouter(AddUser);

@@ -28,6 +28,7 @@ class NavBar extends Component {
       <nav className={`navbar ${isExpanded ? 'navbar--expanded' : ''}`}>
         {items.map(item => (
           <NavBarItem
+            key={item.route}
             isExpanded={isExpanded}
             {...item}
           />

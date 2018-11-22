@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import './MainContent.scss';
 
-class MainContent extends Component {
-  render() {
-    return (
-      <div className="main-content">
-        {this.props.children}
-      </div>
-    );
-  }
+
+function MainContent({ children }) {
+  return (
+    <div className="main-content">
+      {children}
+    </div>
+  );
 }
 
 MainContent.propTypes = {

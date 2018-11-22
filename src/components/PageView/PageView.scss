@@ -1,8 +1,0 @@
-.page-view {
-  display: grid;
-  grid-template-columns: min-content auto;
-  grid-template-rows: 70px auto;
-  grid-template-areas: 
-    "sidebar topbar"
-    "sidebar content";
-}

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 
 import TableList from './TableList/TableList';
 import SearchBar from './SearchBar/SearchBar';
@@ -71,7 +70,7 @@ class TableListContainer extends Component {
   }
 
   render() {
-    const { items, filter } = this.state;
+    const { filter } = this.state;
     const filteredItems = this.getFilteredItems();
 
     return (

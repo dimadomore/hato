@@ -1,19 +1,31 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+
+import SideBar from '../SideBar/SideBar';
+import TopBar from '../TopBar/TopBar';
+import MainContent from '../MainContent/MainContent';
+
 import './App.scss';
 
 
-import PageView from '../PageView/PageView';
+function App({ children }) {
+  return (
+    <div className="app">
+      <TopBar />
+      <SideBar />
+      <MainContent>
+        {children}
+      </MainContent>
+    </div>
+  );
+}
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <PageView>
-          {this.props.children}
-        </PageView>
-      </div>
-    );
-  }
+App.propTypes = {
+  children: PropTypes.node,
+}
+
+App.defaultProps = {
+  children: null,
 }
 
 export default App;

@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import './index.scss';
+
 import App from './components/App/App';
 import DashboardPage from './components/Pages/DashboardPage/DashboardPage';
 import ListPage from './components/Pages/ListPage/ListPage';
 import AddUser from './components/AddUser/AddUser';
 
 import localStorage from './localStorageHandler';
-
 import * as serviceWorker from './serviceWorker';
+
+import './index.scss';
 
 
 const PrivateRoute = ({ component: Component, ...rest }) => (

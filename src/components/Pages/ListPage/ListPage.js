@@ -1,20 +1,19 @@
-import React, { Component } from 'react';
-import './ListPage.scss';
+import React from 'react';
 
 import Block from '../../Block/Block'
 import TableListContainer from './TableListContainer/TableListContainer';
 
-class ListPage extends Component {
+import './ListPage.scss';
 
-  render() {
-    return (
-      <div className="page list-page">
-        <Block className="block-table">
-          <TableListContainer />
-        </Block>
-      </div>
-    );
-  }
+
+function ListPage() {
+  return (
+    <div className="page list-page">
+      <Block className="block-table">
+        <TableListContainer />
+      </Block>
+    </div>
+  );
 }
 
 export default ListPage;
