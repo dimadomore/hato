@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import './TableList.scss';
 
 import TableListItem from './TableListItem/TableListItem';
 import TableHeader from './TableHeader/TableHeader';
+
+import './TableList.scss';
+
 
 class TableList extends Component {
 
@@ -15,9 +17,10 @@ class TableList extends Component {
         <table>
           <tbody>
             <TableHeader />
-            {items.map(item => (
+            {items.map((item, index) => (
               <TableListItem 
-                key={item.id}
+                key={`${item.name}${item.email}`}
+                id={index + 1}
                 deleteItem={deleteItem}
                 {...item}
               />
@@ -34,7 +37,6 @@ class TableList extends Component {
 TableList.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
       name: PropTypes.string,
       email: PropTypes.string,
       phoneNumber: PropTypes.string,

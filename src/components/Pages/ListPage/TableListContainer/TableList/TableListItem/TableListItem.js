@@ -4,10 +4,12 @@ import './TableListItem.scss';
 
 
 function TableListItem({ id, name, email, phoneNumber, dateBirth, languages, deleteItem }) {
+  const formattedId = (`000${id}`).slice(-4);
+
   return (
     <tr className="table-list-item">
       <td>
-        {id}
+        {formattedId}
       </td>
       <td>
         {name}
