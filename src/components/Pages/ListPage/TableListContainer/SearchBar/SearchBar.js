@@ -7,10 +7,14 @@ import './SearchBar.scss';
 function SearchBar({ searchValue, handleChange }) {
   return (
     <div className="searchbar">
+      <div className="searchbar__icon">
+        <i className="fas fa-search"></i>
+      </div>
       <input 
         type="text"
         value={searchValue}
         onChange={handleChange}
+        placeholder="Search..."
       />
     </div>
   );
