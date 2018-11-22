@@ -12,7 +12,7 @@ import './AddUser.scss';
 import "react-datepicker/dist/react-datepicker.css";
 
 
-class AddUser extends Component {
+class AddUser extends Component {  
   state = {
     user: {
       name: '',
@@ -21,8 +21,12 @@ class AddUser extends Component {
       dateBirth: '',
       languages: [],
     },
-    step: 0,
+    step: 4,
+    error: false,
+    errorMessage: '',
   }
+
+  input = React.createRef();
 
   handleInputChange = (name, value) => {
     const { user } = this.state;
@@ -53,23 +57,90 @@ class AddUser extends Component {
       user: {
         ...prevState.user,
         [name]: value,
-      }
+      },
+      error: false,
+      errorMessage: '',
     }));
   }
 
   setNextStep = () => {
-    this.setState(prevState => ({ step: prevState.step + 1 }));
+    this.setState(prevState => {
+      const name = AddUser.stepsInfo[prevState.step].name;
+      const value = prevState.user[name];
+      if (this.validateInput(name, value)) {
+        return { 
+          step: prevState.step + 1,
+        };
+      }
+      if (name === 'name' 
+      || name === 'email'
+      || name ==='phoneNumber') {
+        this.input.current.focus();
+      } 
+      return { ...prevState };
+    });
   }
 
   createUser = () => {
-    const { user } = this.state;
+    const { user, step } = this.state;
+    const name = AddUser.stepsInfo[step].name;
+    const value = user[name];
     const users = localStorage.get('users');
-    if (users && users.length) {
-      localStorage.set('users', [...users, user]);
-    } else {
-      localStorage.set('users', [user]);
+
+    if (this.validateInput(name, value)) {
+      if (users && users.length) {
+        localStorage.set('users', [...users, user]);
+      } else {
+        localStorage.set('users', [user]);
+      }
+      this.props.history.push('/');
     }
-    this.props.history.push('/');
+  }
+
+  setError = (message) => {
+    this.setState({
+      error: true,
+      errorMessage: message,
+    })
+    return false;
+  }
+
+  validateInput(name, value) {
+    if (name === 'name') {
+      if (!value) {
+        return this.setError('Invalid name');
+      }
+      if (value.length < 3) {
+        return this.setError('Name must be at least 4 characters');
+      }
+    }
+
+    if (name === 'email') {
+      const pattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      if (!value || !pattern.test(value)) {
+        return this.setError('Invalid email adress');
+      }
+    }
+
+    if (name === 'languages') {
+      if (value.length === 0) {
+        return this.setError('Select at least 1 language');
+      }
+    }
+
+    if (name === 'phoneNumber') {
+      if (value.length < 9) {
+        return this.setError('Phone number must be at least 9 characters');
+      }
+    }
+
+    if (name === 'dateBirth') {
+      if (!value) {
+        return this.setError('Please select a date');
+      }
+    }
+    
+    return true;
   }
 
   renderInput = ({ type, options, placeholder, name }) => {
@@ -81,11 +152,13 @@ class AddUser extends Component {
       case 'number':
         return (
           <input
+            ref={this.input}
             className={`form form_${name}`}
             type={type}
             placeholder={placeholder}
             name={name}
             value={user[name]}
+            autoComplete="off"
             onChange={(e) => this.handleInputChange(name, e.target.value)}
           />
         );
@@ -105,9 +178,13 @@ class AddUser extends Component {
       case 'date':
         return (
           <DatePicker
-            selected={user[name] ? parse(user[name], 'dd.MM.yyyy', new Date()) : new Date()}
+            selected={user[name] ? parse(user[name], 'dd.MM.yyyy', new Date()) : null}
             onChange={(date) => this.handleInputChange(name, date)}
             dateFormat="dd.MM.yyyy"
+            showYearDropdown
+            isClearable={false}
+            popperPlacement="right-start"
+            placeholderText={placeholder}
           />
         )
 
@@ -117,7 +194,7 @@ class AddUser extends Component {
   }
 
   render() {
-    const { step } = this.state;
+    const { step, error, errorMessage } = this.state;
     const lastStep = AddUser.stepsInfo.length - 1;
     const stepInfo = AddUser.stepsInfo[step];
 
@@ -128,8 +205,14 @@ class AddUser extends Component {
         </div>
         <Block className="add-user__modal">
           <span className="add-user_modal__text">{stepInfo.text}</span>
-          <div className="add-user_modal__form">
+          <div className={`add-user_modal__form ${error && 'add-user_modal__form--error'}`}>
+            {stepInfo.name !== 'languages' &&
+              <div className="add-user_modal_form__icon">
+                {AddUser.icons[stepInfo.name]}
+              </div>
+            }
             {this.renderInput(stepInfo)}
+            <div className="error-message">{errorMessage}</div>
           </div>
           <button
             className="add-user_modal__submit"
@@ -175,5 +258,12 @@ AddUser.stepsInfo = [
     placeholder: 'Select a date'
   },
 ];
+
+AddUser.icons = {
+  name: <i class="fas fa-user"></i>,
+  phoneNumber: <i class="fa fa-phone"></i>,
+  dateBirth: <i class="fas fa-calendar-alt"></i>,
+  email: <i class="fas fa-envelope"></i>,
+}
 
 export default withRouter(AddUser);

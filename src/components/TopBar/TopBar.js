@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
-import './TopBar.scss';
+import { Link } from 'react-router-dom';
 
 import { ReactComponent as AddIcon } from '../../icons/add.svg';
+
+import './TopBar.scss';
+
 
 class TopBar extends Component {
   render() {
     return (
       <div className="topbar">
-        <div className="topbar_add-user">
+        <Link
+          to="/add-user"
+          className="topbar_add-user"
+        >
           <div className="topbar_add-user__icon">
             <AddIcon />
           </div>
           <span className="topbar_add-userr__label">Add user</span>
-        </div>
+        </Link>
       </div>
     );
   }

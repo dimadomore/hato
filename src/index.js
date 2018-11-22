@@ -27,9 +27,9 @@ ReactDOM.render(
         <Route path="/add-user" component={AddUser} />
         <App>
           <Switch>
-            <PrivateRoute exact path="/" component={DashboardPage} />
             <PrivateRoute path="/dashboard" component={DashboardPage} />
             <PrivateRoute path="/list" component={ListPage} />
+            <Redirect from='/' to='/dashboard' />
           </Switch>
         </App>
       </Switch>

@@ -8,8 +8,7 @@ import { ReactComponent as ListIcon } from '../../../../icons/list.svg';
 import './NavBarItem.scss';
 
 
-
-function NavBarItem({ title, route, isExpanded}) {
+function NavBarItem({ title, route, isExpanded }) {
   return (
     <NavLink
       to={route}
