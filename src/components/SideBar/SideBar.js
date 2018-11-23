@@ -8,24 +8,23 @@ import { ReactComponent as ExpandIcon } from '../../icons/expand.svg';
 import './SideBar.scss';
 
 
+const isMobile = window.innerWidth < 1024;
 class SideBar extends Component {
   state = {
     isExpanded: true,
   }
 
   componentDidMount() {
+    if ( window.innerWidth < 1024) {
+      this.setState({ isExpanded: false });
+    };
     window.addEventListener('resize', this.handleResize);
   }
 
   handleResize = () => {
-    const { isExpanded } = this.state;
-
-    if (isExpanded && window.innerWidth < 1024) {
+    if (isMobile) {
       this.setState({ isExpanded: false });
     };
-    // if (!isExpanded && window.innerWidth > 1024) {
-    //   this.setState({ isExpanded: true });
-    // };
   }
 
   handleToggle = () => {

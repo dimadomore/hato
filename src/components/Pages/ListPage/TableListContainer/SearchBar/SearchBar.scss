@@ -28,6 +28,10 @@
       padding-left: calc(25% - 1px);
     }
   }
+
+  @media only screen and (max-width: 800px) {
+    width: 100%;
+  }
 }
 
 .searchbar__icon {

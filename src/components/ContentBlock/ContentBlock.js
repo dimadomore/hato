@@ -8,7 +8,7 @@ import './ContentBlock.scss';
 function ContentBlock(props) {
   return (
     <Block className="content-block">
-      <h3>{props.header}</h3>
+      <h4>{props.header}</h4>
       <p>{props.content}</p>
     </Block>
   );

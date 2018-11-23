@@ -1,15 +1,19 @@
 .sidebar {
   grid-area: sidebar;
-  height: 100vh;
+  height: 100%;
   position: relative;
   background: var(--white);
   border-right: 1px solid #E8E8EA;
   min-width: 85px;
   width: 85px;
+
+  @media only screen and (max-width: 800px) {
+    min-width: 60px;
+    width: 60px;
+  }
 }
 
 .sidebar--expanded {
-  // min-width: 20vw;
   width: 230px;
   max-width: 230px;
   
@@ -21,8 +25,6 @@
   }
 
   .sidebar__toggle {
-    justify-content: flex-start;
-    padding-left: 31px;
     svg {
       transform: rotate(180deg)
     }
@@ -30,12 +32,15 @@
 }
 
 .sidebar__toggle {
-  position: absolute;
+  position: fixed;
+  display: inline-block;
   bottom: 20px;
   width: 22px;
-  display: flex;
+  left: 30px;
   width: 100%;
-  justify-content: center;
+  @media only screen and (max-width: 800px) {
+    left: 18px;
+  }
 }
 
 .sidebar__logo {

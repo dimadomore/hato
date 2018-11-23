@@ -1,5 +1,8 @@
 .app {
   display: grid;
+  height: 100%;
+  width: 100%;
+  position: fixed;
   grid-template-columns: min-content auto;
   grid-template-rows: 70px auto;
   grid-template-areas: 

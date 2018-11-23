@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './TableListItem.scss';
 
+const isMobile = window.innerWidth < 800;
 
 function TableListItem({ id, name, email, phoneNumber, dateBirth, languages, deleteItem }) {
   const formattedId = (`000${id}`).slice(-4);
@@ -30,7 +31,7 @@ function TableListItem({ id, name, email, phoneNumber, dateBirth, languages, del
         className="control-delete"
         onClick={() => deleteItem(id)}
       >
-        <span>Delete</span>
+        {isMobile ? <i className="fas fa-trash-alt"></i> : <span>Delete</span>}
       </td>
     </tr>
   );
