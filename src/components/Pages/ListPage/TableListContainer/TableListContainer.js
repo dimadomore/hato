@@ -39,7 +39,7 @@ class TableListContainer extends Component {
 
   deleteItem = (id) => {
     this.setState(prevState => {
-      const newItems = prevState.items.filter(item => item.id !== id);
+      const newItems = prevState.items.filter((_, index) => index !== id - 1);
       localStorage.set('users', newItems);
       return { items: newItems };
     });
@@ -74,7 +74,7 @@ class TableListContainer extends Component {
     const filteredItems = this.getFilteredItems();
 
     return (
-      <div className="">
+      <div>
         <SearchBar
           searchValue={filter}
           handleChange={this.handleFilterChange}
