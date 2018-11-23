@@ -10,7 +10,22 @@ import './SideBar.scss';
 
 class SideBar extends Component {
   state = {
-    isExpanded: false,
+    isExpanded: true,
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.handleResize);
+  }
+
+  handleResize = () => {
+    const { isExpanded } = this.state;
+
+    if (isExpanded && window.innerWidth < 1024) {
+      this.setState({ isExpanded: false });
+    };
+    // if (!isExpanded && window.innerWidth > 1024) {
+    //   this.setState({ isExpanded: true });
+    // };
   }
 
   handleToggle = () => {
