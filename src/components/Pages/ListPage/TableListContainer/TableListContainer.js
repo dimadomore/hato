@@ -57,7 +57,7 @@ class TableListContainer extends Component {
       items: sortedItems,
       sorted: name,
       sortType: newSortType,
-    }));
+    });
   }
 
   deleteItem = (id) => {
