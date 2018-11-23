@@ -8,6 +8,10 @@ import './TableList.scss';
 
 
 function TableList({ items, deleteItem }) {
+  if (items.length === 0) {
+    return <div className="no-found">No users found</div>;
+  }
+  
   return (
     <div className="table-list">
       <table>
