@@ -21,7 +21,7 @@ class AddUser extends Component {
       dateBirth: '',
       languages: [],
     },
-    step: 0,
+    step: 4,
     error: false,
     errorMessage: '',
   }
@@ -184,7 +184,7 @@ class AddUser extends Component {
             dateFormat="dd.MM.yyyy"
             showYearDropdown
             isClearable={false}
-            popperPlacement="right-start"
+            popperPlacement={window.innerWidth < 600 ? "bottom-start" :"right-start"}
             placeholderText={placeholder}
           />
         )

@@ -8,9 +8,9 @@
   .block-table {
     padding: inherit 50px 50px 50px;
     overflow: hidden;
+
     @media only screen and (max-width: 1200px) {
       padding: 20px;
     }
-
   }
 }
