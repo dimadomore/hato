@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './TableListItem.scss';
 
-
 function TableListItem({ id, name, email, phoneNumber, dateBirth, languages, deleteItem }) {
   const formattedId = (`000${id}`).slice(-4);
 

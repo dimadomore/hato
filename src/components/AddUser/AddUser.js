@@ -21,7 +21,7 @@ class AddUser extends Component {
       dateBirth: '',
       languages: [],
     },
-    step: 4,
+    step: 0,
     error: false,
     errorMessage: '',
   }

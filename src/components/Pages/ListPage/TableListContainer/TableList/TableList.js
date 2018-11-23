@@ -7,7 +7,7 @@ import TableHeader from './TableHeader/TableHeader';
 import './TableList.scss';
 
 
-function TableList({ items, deleteItem }) {
+function TableList({ items, deleteItem, sort }) {
   if (items.length === 0) {
     return <div className="no-found">No users found</div>;
   }
@@ -16,7 +16,7 @@ function TableList({ items, deleteItem }) {
     <div className="table-list">
       <table>
         <tbody>
-          <TableHeader />
+          <TableHeader sort={sort} />
           {items.map((item, index) => (
             <TableListItem 
               key={`${item.name}${item.email}`}
@@ -44,11 +44,13 @@ TableList.propTypes = {
     })
   ),
   deleteItem: PropTypes.func,
+  sort: PropTypes.func,
 }
 
 TableList.defaultProps = {
   items: [],
   deleteItem: () => {},
+  sort: () => {},
 }
 
 
