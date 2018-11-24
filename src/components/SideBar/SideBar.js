@@ -38,7 +38,7 @@ class SideBar extends Component {
     const { isExpanded } = this.state;
 
     return (
-      <aside className={`sidebar ${isExpanded ? 'sidebar--expanded' : ''}`}>
+      <aside className={`sidebar ${isExpanded ? 'sidebar--expanded': ''}`}>
         <div className="sidebar__logo">
           <Logo />
         </div>

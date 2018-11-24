@@ -23,18 +23,16 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 
 ReactDOM.render(
   <Router>
-    <Router>
-      <Switch>
-        <Route path="/add-user" component={AddUser} />
-        <App>
-          <Switch>
-            <PrivateRoute path="/dashboard" component={DashboardPage} />
-            <PrivateRoute path="/list" component={ListPage} />
-            <Redirect from='/' to='/dashboard' />
-          </Switch>
-        </App>
-      </Switch>
-    </Router>
+    <Switch>
+      <Route path="/add-user" component={AddUser} />
+      <App>
+        <Switch>
+          <PrivateRoute path="/dashboard" component={DashboardPage} />
+          <PrivateRoute path="/list" component={ListPage} />
+          <Redirect from='/' to='/dashboard' />
+        </Switch>
+      </App>
+    </Switch>
   </Router>,
   document.getElementById('root')
 );

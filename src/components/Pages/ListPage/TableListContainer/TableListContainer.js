@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import formatDate from 'date-fns/format';
 import parse from 'date-fns/parse';
 
 import TableList from './TableList/TableList';
 import SearchBar from './SearchBar/SearchBar';
-
 
 import localStorage from '../../../../localStorageHandler';
 
