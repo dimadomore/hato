@@ -3,17 +3,19 @@ $blue_rect_width: 9px;
 .navbar-item {
   display: flex;
   align-items: center;
-  justify-content: center;
   height: 70px;
   width: 100%;
   text-decoration: none;
   font-size: 15px;
+  padding-left: calc(18px + #{$blue_rect_width});
+
+  @media only screen and (max-width: 800px) {
+    padding-left: calc(6px + #{$blue_rect_width});
+  }
 }
 
 .navbar-item--expanded {
   padding-right: 1em;
-  justify-content: flex-start;  
-  padding-left: calc(18px + #{$blue_rect_width});
 }
 
 .navbar-item--active {
@@ -72,4 +74,15 @@ $blue_rect_width: 9px;
 .navbar-item__title {
   color: var(--darkgrey);
   margin-left: 15px;
+  animation: fadeIn .5s;
+}
+
+@-webkit-keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}  
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
 }

@@ -6,23 +6,25 @@
   border-right: 1px solid #E8E8EA;
   min-width: 85px;
   width: 85px;
+  transition: width .35s;
+
+  .logo {
+    justify-content: flex-start;
+    padding-left: 28px;
+  }
 
   @media only screen and (max-width: 800px) {
     min-width: 60px;
     width: 60px;
+    .logo {
+      padding-left: 16px;
+    }
   }
 }
 
 .sidebar--expanded {
   width: 230px;
   max-width: 230px;
-
-  .sidebar__logo {
-    .logo {
-      justify-content: flex-start;
-      padding-left: 28px;
-    }
-  }
 
   .sidebar__toggle {
     svg {
