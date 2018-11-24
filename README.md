@@ -4,11 +4,11 @@ This application is the implementation of design prototype provided as a test ta
 
 ## Installation
 
-Use the package manager ```yarn``` to run the application.
+Use the package manager ```yarn``` or ```npm``` to run the application.
 
 ```bash
-yarn install
-yarn start
+yarn install or npm install
+yarn start or npm start
 ```
 Runs the app in the development mode.
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
